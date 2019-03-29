@@ -1,0 +1,3 @@
+<view wx:for="{{arrSong}}" wx:for-item="item" wx:key="xxx">
+<text>{{item.name}}</text><text>{{index+1}}</text>
+</view>

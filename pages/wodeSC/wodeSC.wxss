@@ -1,0 +1,15 @@
+page{background: #F4F4F4;}
+.content{width: 100%;background: #fff;}
+.content .item{width: 95%;display: flex;justify-content: space-between;margin: 0 auto;margin-bottom: 25rpx;}
+.content .item .item_left{position: relative;width: 350rpx;height: 226rpx;}
+.content .item .item_left .zt{position: absolute;top: 0;left: 0;}
+.content .item .item_left image{width: 100%;height: 100%;}
+.content .item .item_left .fobar{width: 100%;position: absolute;bottom: 20rpx;display: flex;align-items: center;justify-content: flex-end;}
+.content .item .item_left .fobar text{color: #FFFFFF;font-size: 22rpx;margin-right: 20rpx;}
+.item_right{overflow: hidden;width: 47%;}
+.item_right .p_name{color: #333333;font-size: 30rpx;margin-bottom: 10rpx;margin-top: 15rpx;}
+.item_right .time{color: #999999;font-size: 26rpx;}
+
+.wuship{width: 100%;overflow: hidden;margin-top: 400rpx;}
+.wuship image{width: 182rpx;height: 151rpx;margin: 0 auto;margin-bottom: 35rpx;display: block;}
+.wuship view{color: #666666;font-size: 30rpx;text-align: center;}

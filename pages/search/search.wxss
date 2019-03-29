@@ -1,0 +1,24 @@
+.top_search{width: 100%;display: flex;align-items: center;height: 64rpx;justify-content: center;margin-bottom: 50rpx;margin-top: 30rpx;}
+.top_search .searchdiv{width: 80%;display: flex;align-items: center;background: #F4F4F4;height: 64rpx;margin-right: 20rpx;border-radius: 10rpx;}
+.top_search .searchdiv image{width: 46rpx;height: 47rpx;margin-left: 30rpx;margin-right: 20rpx;}
+.top_search .searchdiv input{color: #989898;font-size: 26rpx;outline: none;background: none;}
+.top_search .s_right{color: #333333;font-size: 26rpx;display: flex;align-items: center;}
+
+.rmsearch{width: 100%;overflow: hidden;margin-bottom: 20rpx;}
+.rmsearch .rm_title{color: #666666;font-size: 26rpx;padding-left: 20rpx;margin-bottom: 30rpx;}
+.rmsearch .content{width: 100%;display: flex;flex-flow: wrap;}
+.rmsearch .content text{color: #666666;font-size: 26rpx;margin-right: 70rpx;margin-left: 20rpx;margin-bottom:30rpx;}
+
+.searchhistory{width: 100%;overflow: hidden;}
+.searchhistory .rm_title{display: flex;justify-content: space-between;margin-bottom: 30rpx;}
+.searchhistory .rm_title view{color: #666666;font-size: 26rpx;margin-left: 20rpx;}
+.searchhistory .rm_title image{width: 33rpx;height: 35rpx;margin-right: 40rpx;}
+.searchhistory .content{width: 100%;display: flex;flex-flow: wrap;}
+.searchhistory .content text{color: #666666;font-size: 26rpx;margin-right: 70rpx;margin-left: 20rpx;margin-bottom:30rpx;display: block;width: 100%;}
+
+.filiter{width: 100%;height: 100%;position: fixed;top: 0;left: 0;background: rgba(0, 0, 0, 0.4);display: flex;align-items: center;justify-content: center;display: none;}
+.filiter .box{width: 550rpx;height: 250rpx;overflow: hidden;background: #fff;border-radius: 15rpx;}
+.filiter .box .tips{width: 100%;text-align: center;margin: 50rpx  auto 15rpx auto;color: #333333;font-size: 32rpx;margin-bottom: 56rpx;}
+.filiter .box .btn_group{width: 80%;display: flex;margin: 0 auto;justify-content: space-between;align-items: center;}
+.filiter .box .btn_group view{width: 180rpx;height: 70rpx;text-align: center;background: #07C062;border-radius: 15rpx;line-height: 70rpx;color: #fff;font-size: 36rpx;}
+.deletes{background: #999999 !important;}

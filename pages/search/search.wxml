@@ -1,0 +1,31 @@
+<view class="top_search">
+   <view class='searchdiv'>
+	     <image src='../image/sous.png'></image>
+			 <input type='text' placeholder='搜索' bindinput='oninput' bindconfirm='searchBtn' value='{{oninput}}'></input>
+	 </view>
+	 <view class='s_right'><text bindtap='clearText'>取消</text></view>
+</view>
+
+<view class='rmsearch'>
+   <view class='rm_title'>热门搜索</view>
+	 <view  class='content'>
+	    <text wx:for="{{hotSearch}}" wx:for-item="item" wx:key="xxx" bindtap='goSearch'>{{item.keywords}}</text>
+	 </view>
+</view>
+
+<view class='searchhistory'>
+   <view class='rm_title'><view>搜索历史</view><image src='../image/laji.png' bindtap='showlaji' wx:if="{{addlist.length!==0}}"></image></view>
+	 <view  class='content'>
+	    <text wx:for="{{addlist}}" wx:for-item="item" wx:key="xxx">{{item}}</text>
+	 </view>
+</view>
+
+<view class='filiter' style='display:{{disp}}'>
+   <view class='box'>
+	    <view class='tips'>确定删除全部历史记录？</view>
+			<view class='btn_group'>
+			   <view class='deletes' bindtap='deletes'>取消</view>
+				 <view bindtap='clear_his'>确定</view>
+			</view>
+	 </view>
+</view>

@@ -1,0 +1,13 @@
+.head{width: 100%;height: 380rpx;background: #E5E3E4;overflow: hidden;}
+.head .image{width: 145rpx;height: 145rpx;border-radius: 50%;display: block;margin: 0 auto;margin-top: 80rpx;}
+.head .denglu{text-align: center;color: #333;font-size: 32rpx;margin-top: 20rpx;}
+
+.myuser{width: 100%;}
+.myuser .user{display: flex;justify-content: center;align-items: center;margin-bottom: 20rpx;margin-top: 30rpx;}
+.myuser .user view{color: #333333;font-size: 32rpx;margin-right: 10rpx;}
+.myuser .user image{width: 40rpx;height: 31rpx;}
+.myuser .tips{text-align: center;color: #666666;font-size: 24rpx;}
+.content{width: 100%;overflow: hidden;}
+.content view{text-align: center;margin:70rpx auto;color: #333333;font-size: 32rpx;}
+.content .active{color: #07C062;}
+.openvip{width: 602rpx;height: 88rpx;background: #07C062;color: #fff;border-radius: 15rpx;margin: 0 auto;text-align: center;line-height: 88rpx;}

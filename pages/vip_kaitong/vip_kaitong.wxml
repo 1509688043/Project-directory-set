@@ -1,0 +1,15 @@
+<view class="head">
+    <image src='../image/userm.png' class='image'></image>
+		<!-- <view class='denglu'>登录</view> -->
+		<view class='myuser'>
+		    <view class='user'><view>爱吹泡泡的小蘑菇</view><image src='../image/huangguan.png'></image></view>
+				<!-- <view class='tips'>您的会员将在2019-04-19到期</view> -->
+		</view>
+</view>
+
+<view class='content'>
+  <view class='active'>日会员   ¥ 3.00</view>
+	<view >周会员   ¥ 10.00</view>
+	<view >月会员   ¥ 25.00</view>
+</view>
+<view class='openvip'>立即开通</view>

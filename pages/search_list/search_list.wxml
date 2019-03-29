@@ -1,0 +1,17 @@
+
+<view class='content'>
+   <view class='c_item' wx:for="{{list}}" wx:for-item="item" wx:key="xxx" data-goods_id='{{item.goods_id}}' bindtap='goVxiangqing'  wx:if="{{list.length!==0}}">
+	    <view class='imgdiv'>
+			   <image src='{{item.cover}}'></image>
+				 <view class='b_num'>播放量{{item.views}}</view>
+			</view>
+			<view class='name'>{{item.goods_name}}</view>
+			<view class='uptime'>更新时间：{{item.update_time}}</view>
+	 </view>
+</view>
+
+<!-- 没数据显示 -->
+<view class='wuship' wx:if="{{list.length==0}}">
+   <image src='../image/zanwu.png'></image>
+	 <view>暂无更多视频</view>
+</view>

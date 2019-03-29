@@ -1,0 +1,96 @@
+
+<view class="{{fx==1?'fx':''}}">
+
+<view class="V_menu" data-is_vip='{{Videolist.is_vip}}'>
+  <video src="{{Videolist.file_url}}" bindtimeupdate="cateVideo" id="myVideo" bindpause="stopvideo" show-play-btn='{{false}}' show-center-play-btn="{{false}}"></video>
+	<view class='fi_div' hidden="{{openshow}}"> 
+	   <view>开通会员免费观看</view>
+		 <button bindtap='kaitongvip'>立即开通</button>
+	</view>
+	<view hidden="{{hot}}" class='bofang' bindtap='bofang'>
+	   <view wx:if="{{isvip!==1}}" class='sk'>
+		    <image src='../image/bofang11.png'></image>
+				<view>试看{{shikanTime/60}}分钟</view>
+		 </view>
+		 <view class='vips' wx:else>
+		    <image src='../image/bofang11.png'></image>
+		 </view>
+	</view>
+
+	 <view class='namegroup'>
+	    <view class='Vname'><image class='vip' src='../image/vip.png' wx:if="{{Videolist.is_vip==1}}"></image><text>{{Videolist.goods_name}}</text></view>
+			<view class='name_right'>
+			    <view bindtap='shouchang' data-collections_status='{{Videolist.collections_status}}' data-goods_id='{{Videolist.goods_id}}'>
+					   <image src='{{shouchangimg[Videolist.collections_status]}}'></image>
+					   <text>{{Videolist.collections_status}}</text>
+					</view>
+					<view bindtap='goshare' data-cover='{{Videolist.cover}}' data-goods_name='{{Videolist.goods_name}}' data-goods_id='{{Videolist.goods_id}}'>
+					   <image src='../image/share (1).png'></image>
+					   <text>{{Videolist.shares}}</text>
+					</view>
+				  <view bindtap='dianzan' data-agrees_status='{{Videolist.agrees_status}}' data-goods_id='{{Videolist.goods_id}}'>
+					   	<image src='{{dianzan[Videolist.agrees_status]}}'></image>
+				     	<text>{{Videolist.agrees_status}}</text>
+					</view>
+			</view>
+	 </view>
+
+	 <view class='V-group'>
+	    <text>{{Videolist.spe_name}}</text>
+			<text>{{Videolist.update_time}}</text>
+			<text>{{Videolist.views}}次播放</text>
+	 </view>
+
+	 <view class='msg' >
+    {{Videolist.goods_desc}}
+     </view>
+</view>
+
+<view class='now_tj' wx:if="{{xiangguanvideoList.length!==0}}"><text>相关推荐</text></view>
+<view class='content'>
+   <view class='c_item' wx:for="{{xiangguanvideoList}}" wx:for-item="item" wx:key="xxx"  data-goods_id='{{item.goods_id}}' bindtap='goVxiangqing'>
+	    <view class='imgdiv'>
+			   <image src='../image/jjianbian.png' class='zt'></image>
+			   <image src='{{item.cover}}'></image>
+				 <view class='b_num'>播放量{{item.views}}</view>
+			</view>
+			<view class='name'>{{item.goods_name}}</view>
+			<view class='uptime'>更新时间：{{item.update_time}}</view>
+	 </view>
+</view>
+
+<!-- 没数据显示 -->
+<view class='wuship' wx:if="{{Videolist.length==0}}">
+   <image src='../image/zanwu.png'></image>
+	 <view>暂无视频信息</view>
+</view>
+
+
+<view class='filiter' style='display:{{disp}}'>
+   <view class='box'>
+	    <image src='{{this_cover}}' class='mimg'></image>
+			<view class='share'>
+			   <view class='m_name'>{{this_goods_name}}</view>
+				 <view class='shar_group'>
+				    <view>
+						   <button plain="true" open-type="share">
+							    <image src='../image/weixin.png'></image>
+							    <text>分享好友</text>
+							 </button>
+						</view>
+						<view bindtap='shearHB'>
+						   <image src='../image/haibao.png'></image>
+							 <text>分享海报</text>
+						</view>
+				 </view>
+			</view>
+     
+		 <view class='deleicon'>
+			    <image src='../image/dele.png' class='dele' bindtap='GBshare'></image>
+			</view>
+		
+	 </view>
+
+	 	
+</view>
+</view>

@@ -1,0 +1,20 @@
+<view class="content">
+    <view class='item' wx:for="{{list}}" wx:for-item="item" wx:key="xxx" data-goods_id='{{item.goods_id}}' bindtap='goVxiangqing'>
+		    <view class='item_left'>
+				    <image src='../image/jjianbian.png' class='zt'></image>
+				    <image src='{{item.cover}}'></image>
+						<view class='fobar'>
+						    <text>{{item.long_times}}</text>
+						</view>
+				</view>
+				<view class='item_right'>
+				   <view class='p_name'>{{item.goods_name}}</view>
+					 <view class='time'>{{item.spe_name}} / {{item.create_time}}</view>
+				</view>
+		</view>
+</view>
+<!-- 没数据显示 -->
+<view class='wuship' wx:if="{{list.length==0}}">
+   <image src='../image/zanwu.png'></image>
+	 <view>暂无收藏视频</view>
+</view>

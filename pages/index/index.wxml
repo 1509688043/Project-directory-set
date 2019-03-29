@@ -1,0 +1,99 @@
+<!-- <import src="../../wxParse/wxParse.wxml"/> 	 -->
+<view class="{{fx==1?'fx':''}}">
+
+<view class='m_banner'>
+<view class="top_search" bindtap='gosearch'>
+   <image src='../image/search.png'></image>
+	 <input type='text' placeholder='搜索' placeholder-class="place-holder" disabled></input>
+</view>
+
+
+  <swiper autoplay indicator-dots indicator-color="#999999" indicator-active-color="#ffffff">
+	   <swiper-item wx:for="{{init.adverts}}" wx:for-item="item" wx:key="xxx" data-param="{{item.param}}" data-target_rule="{{item.target_rule}}" data-ad_id="{{item.ad_id}}" bindtap="tiaozhuanguize"><image src='{{item.abs_url}}'></image></swiper-item>
+	</swiper>
+</view>
+
+<view class='now_tj'><text>今日推荐</text></view>
+
+<view class="V_menu" wx:for="{{goodList}}" wx:for-item="item" wx:key="xxx" data-agrees='{{item.agrees}}' data-goods_id='{{item.goods_id}}' data-is_vip='{{item.is_vip}}' data-collections_status='{{item.collections_status}}' data-agrees_status='{{item.agrees_status}}'>
+  <!-- <video src="{{src}}" bindtimeupdate="cateVideo" id="myVideo{{index}}" bindpause="stopvideo" data-index='{{index}}' show-play-btn='{{false}}' show-center-play-btn="{{false}}"></video> -->
+	<image class='coverVIdeo' src='{{item.cover}}' bindtap='goVxiaongqing' data-goods_id='{{item.goods_id}}' data-is_vip='{{item.is_vip}}'></image>
+	<!-- <view class='fi_div' wx:if="{{xx[index]!=''}}">
+	   <view>开通会员免费观看</view>
+		 <button>立即开通</button>
+	</view> -->
+	<!-- bindtap='bofang' -->
+	<view hidden="{{hot==index}}" class='bofang' bindtap='goVxiaongqing' data-goods_id='{{item.goods_id}}' data-is_vip='{{item.is_vip}}' data-index='{{index}}'><image src='../image/bofang11.png'></image><view wx:if="{{item.is_vip==1}}">试看{{shikanTime/60}}分钟</view></view>
+
+	 <view class='namegroup'>
+	    <view class='Vname'>{{item.goods_name}}</view>
+			<view class='name_right'>
+			    <view bindtap='shouchang' data-collections_status='{{item.collections_status}}' data-goods_id='{{item.goods_id}}'>
+					   <image src='{{shouchangimg[item.collections_status]}}'></image>
+					   <text>{{item.collections_status}}</text>
+					</view>
+					<view bindtap='goshare' data-cover='{{item.cover}}' data-goods_name='{{item.goods_name}}' data-goods_id='{{item.goods_id}}'>
+					   <image src='../image/share (1).png'></image>
+					   <text>{{item.shares}}</text>
+					</view>
+				  <view bindtap='dianzan' data-agrees_status='{{item.agrees_status}}' data-goods_id='{{item.goods_id}}'>
+					   	<image src='{{dianzan[item.agrees_status]}}'></image>
+				     	<text>{{item.agrees_status}}</text>
+					</view>
+			</view>
+	 </view>
+
+	 <view class='V-group'>
+	    <text>{{item.spe_name}}</text>
+			<text>{{item.update_time}}</text>
+			<text>{{item.views}}次播放</text>
+	 </view>
+
+	 <view class='msg' style="{{index==zk?'':'-webkit-line-clamp:2'}}" data-index='{{index}}'>
+   {{item.goods_desc}}
+<!-- <template is="wxParse" data="{{wxParseData:article.nodes}}"/> -->
+     </view>
+
+		<view class='zhankai'>
+		   <view  wx:if="{{index==zk}}" bindtap='zk' data-index='-1'>
+			   <image src='../image/shou.png'></image>
+			   <text>收起</text>
+			 </view>
+			 <view wx:if="{{index!==zk}}"  bindtap='zk' data-index='{{index}}'>
+			   <image src='../image/zhankai.png'></image>
+			   <text>展开</text>
+			 </view>
+		</view>
+</view>
+
+<view class='filiter' style='display:{{disp}}'>
+   <view class='box'>
+	    <image src='{{this_cover}}' class='mimg'></image>
+			<view class='share'>
+			   <view class='m_name'>{{this_goods_name}}</view>
+				 <view class='shar_group'>
+				    <view>
+						   <button plain="true" open-type="share">
+							    <image src='../image/weixin.png'></image>
+							    <text>分享好友</text>
+							 </button>
+						</view>
+						<view bindtap='shearHB'>
+						   <image src='../image/haibao.png'></image>
+							 <text>分享海报</text>
+						</view>
+				 </view>
+			</view>
+
+		<view class='deleicon'>
+			    <image src='../image/dele.png' class='dele' bindtap='GBshare'></image>
+			</view>
+	 </view>
+
+	 	
+
+</view>
+
+
+</view>
+

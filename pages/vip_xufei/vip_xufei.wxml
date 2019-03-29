@@ -1,0 +1,16 @@
+<view class="head">
+    <image src='{{head}}' class='image'></image>
+		<!-- <view class='denglu'>登录</view> -->
+		<view class='myuser'>
+		    <view class='user'><view>{{nickname}}</view><image src='../image/huangguan.png' wx:if="{{init.is_vip=='1'}}"></image></view>
+				<view class='tips' wx:if="{{init.is_vip=='1'}}">您的会员将在{{init.over_time}}到期</view>
+		</view>
+</view>
+
+<view class='content'>
+  <view class="{{nd==1?'active':''}}" data-index='1' bindtap='chked'>日会员   ¥ {{init.price_day}}</view>
+	<view  class="{{nd==2?'active':''}}"  data-index='2' bindtap='chked'>周会员   ¥ {{init.week_day}}</view>
+	<view  class="{{nd==3?'active':''}}" data-index='3' bindtap='chked'>月会员   ¥ {{init.price_month}}</view>
+</view>
+<view class='openvip' wx:if="{{init.is_vip=='1'}}" bindtap='openVip'>立即续费</view>
+<view class='openvip' wx:else="{{init.is_vip==0}}" bindtap='openVip'>立即开通</view>

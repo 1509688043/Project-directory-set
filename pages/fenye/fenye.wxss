@@ -1,0 +1,1 @@
+view{height: 100rpx;background: #cacaca;margin: 30rpx auto;display: flex;justify-content: space-between;align-items: center;}
