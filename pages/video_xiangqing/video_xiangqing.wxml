@@ -2,17 +2,19 @@
 <view class="{{fx==1?'fx':''}}">
 
 <view class="V_menu" data-is_vip='{{Videolist.is_vip}}'>
-  <video src="{{Videolist.file_url}}" bindtimeupdate="cateVideo" id="myVideo" bindpause="stopvideo" show-play-btn='{{false}}' show-center-play-btn="{{false}}"></video>
+  <video src="{{Vsrc}}" bindtimeupdate="cateVideo" id="myVideo" bindpause="stopvideo" show-play-btn='{{true}}' show-center-play-btn="{{false}}" controls='{{true}}' enable-play-gesture="{{true}}"></video>
+	<view class='vSrcnote' wx:if="{{vSrcnote}}">该视频资源不存在。</view>
 	<view class='fi_div' hidden="{{openshow}}"> 
 	   <view>开通会员免费观看</view>
 		 <button bindtap='kaitongvip'>立即开通</button>
 	</view>
 	<view hidden="{{hot}}" class='bofang' bindtap='bofang'>
-	   <view wx:if="{{isvip!==1}}" class='sk'>
+	   <!-- <view wx:if="{{isvips!==1}}" class='sk'>
 		    <image src='../image/bofang11.png'></image>
 				<view>试看{{shikanTime/60}}分钟</view>
-		 </view>
-		 <view class='vips' wx:else>
+		 </view> -->
+		   <!-- wx:if="{{isvip==1}}" -->
+		 <view class='vips'>
 		    <image src='../image/bofang11.png'></image>
 		 </view>
 	</view>
@@ -25,7 +27,7 @@
 					   <text>{{Videolist.collections_status}}</text>
 					</view>
 					<view bindtap='goshare' data-cover='{{Videolist.cover}}' data-goods_name='{{Videolist.goods_name}}' data-goods_id='{{Videolist.goods_id}}'>
-					   <image src='../image/share (1).png'></image>
+					   <image src='../image/sharess.png'></image>
 					   <text>{{Videolist.shares}}</text>
 					</view>
 				  <view bindtap='dianzan' data-agrees_status='{{Videolist.agrees_status}}' data-goods_id='{{Videolist.goods_id}}'>

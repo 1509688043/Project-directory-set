@@ -12,7 +12,7 @@
 </view>
 
 <!-- 没数据显示 -->
-<view class='wuship' wx:if="{{list.length==0}}">
+<view class='wuship' wx:if="{{shuju==0}}">
    <image src='../image/zanwu.png'></image>
 	 <view>暂无更多视频</view>
 </view>

@@ -5,10 +5,11 @@ var videoContext = wx.createVideoContext;
 var timer;
 Page({ 
 	data: {
-		src: 'https://flv2.bn.netease.com/videolib3/1803/28/RkuxC2558/SD/RkuxC2558-mobile.mp4',
+		Vsrc: '', //当前视频地址
 		hot:false,
 		disp: 'none',
 		openshow:true,
+		vSrcnote:false, //判断视频是否存在
 		isvip:0,//判断用户是否是会员 默认不是
 		fx: '0', //判断屏幕固定
 		nowgoods_id:'',//当前的视频id
@@ -43,8 +44,8 @@ Page({
 			success: function (e) {
 				console.log(e.data.data);
 				wx.previewImage({
-					current: e.data.data,//当前的这张图
-					urls: [e.data.data], //图片数组
+					current: e.data.data.url,//当前的这张图
+					urls: [e.data.data.url], //图片数组
 				})
 
 				if (that.data.disp == 'none') {
@@ -71,7 +72,7 @@ Page({
 			var collections_status = 0
 		}
 		// console.log(goods_id, collections_status, wx.getStorageSync('m_id'))
-		if (wx.getStorageSync('m_id') !== ''){
+		if (wx.getStorageSync('nickname') !== ''){
 			wx.request({
 				url: getApp().heads + 'Center/doCollection',
 				data: {
@@ -101,12 +102,14 @@ Page({
 			})
 		}else{
 			//跳登录
-			wx.switchTab({
-				url: '../wode/wode',
+			wx.showToast({
+				title: '请先登录！'
 			})
-			wx.showTabBar({
-				title: '请先登录',
-			})
+			setTimeout(function () {
+				wx.switchTab({
+					url: '../wode/wode',
+				})
+			}, 1000)
 		}
 	},
 	// 点赞
@@ -120,7 +123,7 @@ Page({
 			var agrees_status = 0
 		}
 		// console.log(goods_id, agrees_status, wx.getStorageSync('m_id'))
-		if (wx.getStorageSync('m_id')!==''){//如果用户未登录则不能操作分享收藏
+		if (wx.getStorageSync('nickname') !== ''){//如果用户未登录则不能操作分享收藏
 			wx.request({
 				url: getApp().heads + 'Center/doAgree',
 				data: {
@@ -149,12 +152,14 @@ Page({
 			})
 		}else{
 			//跳登录
-			wx.switchTab({
-				url: '../wode/wode',
+			wx.showToast({
+				title: '请先登录！'
 			})
-       wx.showTabBar({
-				 title: '请先登录',
-			 })
+			setTimeout(function () {
+				wx.switchTab({
+					url: '../wode/wode',
+				})
+			}, 1000)
 		}
 	},
 	// 打开分享
@@ -162,39 +167,51 @@ Page({
 		// wx.hideTabBar({})
 		var that = this;
 		var ev = e.currentTarget.dataset.goods_id
-		wx.request({
-			url: getApp().heads + 'Center/doShare',
-			data: {
-				goods_id: e.currentTarget.dataset.goods_id,
-				m_id: wx.getStorageSync('m_id'),
-			},
-			header: {
-				'content-type': 'application/x-www-form-urlencoded'
-			},
-			method: 'post',
-			success: function (e) {
-				// console.log(e);
-				that.setData({
-					fx: 1,
-					nowgoods_id: ev
+		if (wx.getStorageSync('nickname') !== ''){
+			wx.request({
+				url: getApp().heads + 'Center/doShare',
+				data: {
+					goods_id: e.currentTarget.dataset.goods_id,
+					m_id: wx.getStorageSync('m_id'),
+				},
+				header: {
+					'content-type': 'application/x-www-form-urlencoded'
+				},
+				method: 'post',
+				success: function (e) {
+					// console.log(e);
+					that.setData({
+						fx: 1,
+						nowgoods_id: ev
+					})
+					if (that.data.disp == 'none') {
+						that.setData({
+							disp: 'flex',
+						})
+					} else {
+						that.setData({
+							disp: 'none',
+						})
+					}
+				}
+			})
+		}else{
+			wx.showToast({
+				title: '请先登录！'
+			})
+			setTimeout(function () {
+				wx.switchTab({
+					url: '../wode/wode',
 				})
-			}
-		})
+			}, 2000)
+		}
 
 		that.setData({
 			this_cover: e.currentTarget.dataset.cover,
 			this_goods_name: e.currentTarget.dataset.goods_name
 		})
 		// console.log(e.currentTarget.dataset)
-		if (that.data.disp == 'none') {
-			that.setData({
-				disp: 'flex',
-			})
-		} else {
-			that.setData({
-				disp: 'none',
-			})
-		}
+		
 	},
 	// 关闭分享
 	GBshare: function () {
@@ -231,13 +248,22 @@ Page({
 			},
 			method: 'post',
 			success: function (e) {
-				console.log(e.data.data);
+				console.log(e.data.data.file_url);
+				var osrc = e.data.data.file_url;
+				var ossfile = osrc.replace(/amp;/g, '')
+				// var ossfile = osrc.split('&')[0] + osrc.split(';')[1]
+				// console.log(ossfile)
+				console.log(e.data.data)
 				that.setData({
 					Videolist: e.data.data,
-					isvip: e.data.data.views_status, //1是会员  0不是 
+					Vsrc:ossfile, //转化后的当前视频连接
+					isvip: e.data.data.views_status, //播放状态 0-限制播放 1-无限播放
 					// this_cover: e.data.data.poster,  //当前食品图片
 					// this_goods_name: e.data.data.goods_name, //当前视频名字
 					xiangguanvideoList: e.data.data.video
+				})
+				wx.setNavigationBarTitle({
+					title: e.data.data.goods_name
 				})
 			}
 		})
@@ -290,28 +316,61 @@ Page({
 		timer = setTimeout(function () {
 			console.log(e.detail.currentTime);//监听正在播放的视频时长
 			var snum = e.detail.currentTime;
-			var isvip=that.data.isvip; //用户是否会员身份
-			if (isvip == 0) {//用户不是会员则计时
-				if (snum > wx.getStorageSync('shikanTime')) {
-					videoContextPrev.pause()
-					console.log("超时")
-					clearTimeout(timer);
-					that.setData({
-						openshow: false
-					})
+			var isvip=that.data.isvip; //视频是否会员身份
+			var userisvip = wx.getStorageSync('is_vip');//用户是否是vip 0 1
+			console.log(isvip, userisvip)
+			if (isvip == 0) {//视频是会员则计时 播放状态 0-限制播放 1-无限播放
+				if (wx.getStorageSync('is_vip')==0){//用户不是会员
+					if (snum > that.data.Videolist.times.s) {// wx.getStorageSync('shikanTime')
+						videoContextPrev.pause()
+						console.log("超时")
+						clearTimeout(timer);
+						that.setData({
+							openshow: false
+						})
+					}
+				} else {
+					console.log('用户是会员')
 				}
 			}else{
-				//用户是会员
+				//
+				console.log('无限播放')
 			}
 		}, 250)
 	},
 	bofang: function (e) {
 		var that = this;
 		var videoContextPrev = wx.createVideoContext('myVideo')
-		videoContextPrev.play()
-    that.setData({
-			hot:true
-		})
+		if (that.data.Vsrc == ''){
+       that.setData({
+				 vSrcnote:true,
+				 hot: true
+			 })
+		}else{
+			videoContextPrev.play()
+			that.setData({
+				hot: true
+			})
+		}
+	},
+	onShow:function(){
+		var that=this;
+		// if (that.data.Vsrc==''){
+		// 	  var pages = getCurrentPages();
+    //     var prevPage = pages[pages.length - 2]; //上一个页面
+    //     wx.showToast({
+		// 			title: '该视频不存在',
+		// 			success:function(){
+		// 				setTimeout(function(){
+		// 					prevPage.onLoad()
+		// 					wx.navigateBack({
+		// 					})
+		// 				},2000)
+		// 			}
+		// 		})
+		// }else{
+
+		// }
 	}
 
 })

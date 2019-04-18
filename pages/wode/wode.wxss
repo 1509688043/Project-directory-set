@@ -11,7 +11,7 @@
 .myuser .user image{width: 40rpx;height: 31rpx;}
 .myuser .tips{text-align: center;color: #666666;font-size: 24rpx;}
 .content{width: 100%;overflow: hidden;}
-.content view{text-align: center;margin:70rpx auto;color: #333333;font-size: 32rpx;}
+.content view{text-align: center;margin:50rpx auto;color: #333333;font-size: 32rpx;height: 80rpx;line-height: 80rpx;}
 .content view button{background: none;padding: 0;margin: 0;color: #333333;font-size: 32rpx;}
 .content view button::after {
   border: none

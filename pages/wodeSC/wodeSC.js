@@ -99,7 +99,18 @@ Page({
 
 	},
 
-
+	onPullDownRefresh: function () {
+		var that = this;
+		wx.showNavigationBarLoading();
+		// 隐藏导航栏加载框
+		that.goSend();
+		setTimeout(function () {
+			// 隐藏导航栏加载框
+			wx.hideNavigationBarLoading();
+			// 停止下拉动作
+			wx.stopPullDownRefresh();
+		}, 1000)
+	},
 
 	/**
 	 * 用户点击右上角分享

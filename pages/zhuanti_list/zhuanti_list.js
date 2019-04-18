@@ -4,7 +4,8 @@ Page({
 	data: {
 		goods_cate_id:'',//专题id
 		p:1 , //分页
-		list:[]//数据
+		list:[],//数据
+		shuju:-1
 	},
 	goVxiangqing:function(e){
 		wx.navigateTo({
@@ -21,7 +22,8 @@ Page({
 				'content-type': 'application/x-www-form-urlencoded' // 默认值
 			},
 			data: {
-				p: that.data.p+1  //分页
+				goods_cate_id: that.data.goods_cate_id,
+				p: that.data.p+1//分页
 			},
 			method: 'post',
 			success: function (e) {
@@ -59,18 +61,29 @@ Page({
 			method: 'post',
 			success: function (e) {
 				console.log(e.data.data.list);
-				that.setData({
-					list: e.data.data.list,
-					p:that.data.p
-				})
+				if (e.data.data.list.length!==0){
+					that.setData({
+						list: e.data.data.list,
+						p: that.data.p,
+						shuju: 1 //有数据
+					})
+				}else{
+					that.setData({
+						shuju:0
+					})
+				}
 			}
 		})
 	},
 	onLoad: function (options) {
+		console.log(options)
      this.setData({
 			 goods_cate_id: options.goods_cate_id
 		 })
 		 this.goSend();
+		wx.setNavigationBarTitle({
+			title: options.title
+		})
 	},
 
 	/**
@@ -105,7 +118,16 @@ Page({
 	 * 页面相关事件处理函数--监听用户下拉动作
 	 */
 	onPullDownRefresh: function () {
-
+		var that = this;
+		wx.showNavigationBarLoading();
+		// 隐藏导航栏加载框
+		that.goSend();
+		setTimeout(function () {
+			// 隐藏导航栏加载框
+			wx.hideNavigationBarLoading();
+			// 停止下拉动作
+			wx.stopPullDownRefresh();
+		}, 1000)
 	},
 
 	/**

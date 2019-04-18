@@ -1,6 +1,6 @@
 <!-- <image src='http://wjh-api.uuudoo.com/Uploads/images/wancheng.png' style='width:40rpx;height:40rpx;'></image> -->
 <view class='content'>
-   <view class='c_item' wx:for="{{list}}" wx:key='xxx' wx:item="item" data-goods_cate_id='{{item.goods_cate_id}}' bindtap='goZTlistxiangqing'>
+   <view class='c_item' wx:for="{{list}}" wx:key='xxx' wx:item="item" data-goods_cate_id='{{item.goods_cate_id}}' bindtap='goZTlistxiangqing' data-name='{{item.name}}'>
 	    <view class='imgdiv'>
 			   <image src='../image/zjb.png' class='zt'></image>
 			   <image src='{{item.cover}}'></image>

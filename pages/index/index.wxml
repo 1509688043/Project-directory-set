@@ -1,6 +1,5 @@
 <!-- <import src="../../wxParse/wxParse.wxml"/> 	 -->
 <view class="{{fx==1?'fx':''}}">
-
 <view class='m_banner'>
 <view class="top_search" bindtap='gosearch'>
    <image src='../image/search.png'></image>
@@ -12,6 +11,7 @@
 	   <swiper-item wx:for="{{init.adverts}}" wx:for-item="item" wx:key="xxx" data-param="{{item.param}}" data-target_rule="{{item.target_rule}}" data-ad_id="{{item.ad_id}}" bindtap="tiaozhuanguize"><image src='{{item.abs_url}}'></image></swiper-item>
 	</swiper>
 </view>
+
 
 <view class='now_tj'><text>今日推荐</text></view>
 
@@ -33,7 +33,7 @@
 					   <text>{{item.collections_status}}</text>
 					</view>
 					<view bindtap='goshare' data-cover='{{item.cover}}' data-goods_name='{{item.goods_name}}' data-goods_id='{{item.goods_id}}'>
-					   <image src='../image/share (1).png'></image>
+					   <image src='../image/sharess.png'></image>
 					   <text>{{item.shares}}</text>
 					</view>
 				  <view bindtap='dianzan' data-agrees_status='{{item.agrees_status}}' data-goods_id='{{item.goods_id}}'>
@@ -49,12 +49,12 @@
 			<text>{{item.views}}次播放</text>
 	 </view>
 
-	 <view class='msg' style="{{index==zk?'':'-webkit-line-clamp:2'}}" data-index='{{index}}'>
+	 <view class='msg' style="{{index==zk?'':'-webkit-line-clamp:2'}}" data-index='{{index}}' data-goods_desc_sum='{{item.goods_desc_sum}}'>
    {{item.goods_desc}}
 <!-- <template is="wxParse" data="{{wxParseData:article.nodes}}"/> -->
      </view>
 
-		<view class='zhankai'>
+		<view class='zhankai'  wx:if="{{item.goods_desc_sum>50}}">
 		   <view  wx:if="{{index==zk}}" bindtap='zk' data-index='-1'>
 			   <image src='../image/shou.png'></image>
 			   <text>收起</text>
@@ -93,7 +93,7 @@
 	 	
 
 </view>
-
-
 </view>
+
+
 

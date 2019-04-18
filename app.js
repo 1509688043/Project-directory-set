@@ -24,6 +24,10 @@ App({
 								key: "m_id",
 								data: e.data.data.m_id,
 							})
+							wx.setStorage({
+								key: "hasLogin",
+								data: '',
+							})
 						}
 					})
 				}

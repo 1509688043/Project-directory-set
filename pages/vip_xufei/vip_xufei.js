@@ -33,8 +33,31 @@ Page({
 			},
 			method: 'post',
 			success: function (e) {
-				console.log(wx.getStorageSync('Now_goods_id') + '=' + wx.getStorageSync('m_id') + '=' + that.data.nd)
 				console.log(e);
+				var apirest=e.data.data.sign;
+				console.log(apirest)
+				// setTimeout(function () {
+				// 	wx.reLaunch({
+				// 		url: '../wode/wode?fh=1'
+				// 	})
+				// }, 1000)
+				// 调支付
+				wx.requestPayment({
+					timeStamp: apirest.timeStamp.toString(),
+					nonceStr: apirest.nonceStr,
+					package: apirest.package,
+					signType: apirest.signType,
+					paySign: apirest.sign,
+					success:function(res){
+						console.log(res)
+						setTimeout(function () {
+							wx.reLaunch({
+								url: '../wode/wode?fh=1'
+							})
+						}, 1000)
+
+					}
+				})
 			}
 		})
     

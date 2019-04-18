@@ -22,15 +22,28 @@ Page({
 	},
 	// 去我的收藏
 	goSC:function(){
-		wx.navigateTo({
-			url: '../wodeSC/wodeSC',
-		})
+		if (wx.getStorageSync('nickname') !== '') {
+			wx.navigateTo({
+				url: '../wodeSC/wodeSC',
+			})
+		}else{
+			wx.showToast({
+				title: '请先登录',
+			})
+		}
+		
 	},
 	// 去我的观看记录
 	goGK: function () {
-		wx.navigateTo({
-			url: '../wodeGK/wodeGK',
-		})
+		if (wx.getStorageSync('nickname') !== '') {
+			wx.navigateTo({
+				url: '../wodeGK/wodeGK',
+			})
+		} else {
+			wx.showToast({
+				title: '请先登录',
+			})
+		}
 	},
   // 登录
 	goLogin:function(){
@@ -111,6 +124,11 @@ Page({
 																		key: "nickname",
 																		data: e.data.data.nickname,
 																	})
+																	// 设置登录为true
+																	wx.setStorage({
+																		key: "hasLogin",
+																		data: 1,
+																	})
 
 																	that.p_isvip();
 																}
@@ -148,14 +166,23 @@ Page({
 			success: function (e) {
 				console.log(e.data.data);
 				that.setData({
-					isviparr: e.data.data
+					isviparr: e.data.data,
+					head: e.data.data.head,  //头像
+					username: e.data.data.nickname,  //头像
+					is_loginshow: false
 				})
-				
+				wx.setStorage({
+					key: "is_vip",
+					data: e.data.data.is_vip
+				})
 			}
 		})
 	},
 	onLoad: function (options) {
 		this.getConfig();
+		if (options.fh || wx.getStorageSync('nickname') !== ''){
+			this.p_isvip();
+		}
 	},
 	// 上传头像
 	setuserimg(e){
@@ -204,8 +231,11 @@ Page({
 	},
 	openlainxi:function(){
     var that=this;
-		that.setData({
-			disp:'flex'
+		// that.setData({
+		// 	disp:'flex'
+		// })
+		wx.makePhoneCall({
+			phoneNumber: that.data.kfnumber,
 		})
 	},
 	delelainxi: function () {

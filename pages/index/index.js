@@ -57,7 +57,7 @@ Page({
 			var collections_status=0
 		} 
 		// console.log(goods_id, collections_status, wx.getStorageSync('m_id'))
-		if (wx.getStorageSync('m_id') !== ''){
+		if (wx.getStorageSync('nickname') !== ''){
 			wx.request({
 				url: getApp().heads + 'Center/doCollection',
 				data: {
@@ -86,13 +86,16 @@ Page({
 				}
 			})
 		}else{
-			//跳登录
-			wx.switchTab({
-				url: '../wode/wode',
-			})
-			wx.showTabBar({
+			wx.showToast({
 				title: '请先登录',
 			})
+			setTimeout(function(){
+				//跳登录
+				wx.switchTab({
+					url: '../wode/wode',
+				})
+			},2000)
+			
 		}
 	},
 	// 点赞
@@ -106,7 +109,7 @@ Page({
 			var agrees_status = 0
 		}
 		// console.log(goods_id, agrees_status, wx.getStorageSync('m_id'))
-		if (wx.getStorageSync('m_id') !== ''){
+		if (wx.getStorageSync('nickname') !== ''){
 			wx.request({
 				url: getApp().heads + 'Center/doAgree',
 				data: {
@@ -134,53 +137,73 @@ Page({
 				}
 			})
 		}else{
-			//跳登录
-			wx.switchTab({
-				url: '../wode/wode',
-			})
-			wx.showTabBar({
+			wx.showToast({
 				title: '请先登录',
 			})
+			setTimeout(function () {
+				//跳登录
+				wx.switchTab({
+					url: '../wode/wode',
+				})
+			}, 2000)
 		}
 	},
 	// 打开分享
 	goshare:function(e){
-		wx.hideTabBar({animation:true})
-		var that=this;
-		var ev=e;
-		wx.request({
-			url: getApp().heads + 'Center/doShare',
-			data: {
-				goods_id: ev.currentTarget.dataset.goods_id,
-				m_id: wx.getStorageSync('m_id'),
-			},
-			header: {
-				'content-type': 'application/x-www-form-urlencoded'
-			},
-			method: 'post',
-			success: function (e) {
-				// console.log(e);
-				that.setData({
-					fx:1,
-					goodid: ev.currentTarget.dataset.goods_id
+		var that = this;
+		if (wx.getStorageSync('nickname') !== ''){
+			wx.hideTabBar({ animation: true })
+			
+			var ev = e;
+			wx.request({
+				url: getApp().heads + 'Center/doShare',
+				data: {
+					goods_id: ev.currentTarget.dataset.goods_id,
+					m_id: wx.getStorageSync('m_id'),
+				},
+				header: {
+					'content-type': 'application/x-www-form-urlencoded'
+				},
+				method: 'post',
+				success: function (e) {
+					// console.log(e);
+					that.setData({
+						fx: 1,
+						goodid: ev.currentTarget.dataset.goods_id
+					})
+
+					if (that.data.disp == 'none') {
+						that.setData({
+							disp: 'flex',
+						})
+					} else {
+						that.setData({
+							disp: 'none',
+						})
+					}
+
+				}
+			})
+		}else{
+			// 显示tabbar
+			// wx.showTabBar({ animation: true })
+
+			wx.showToast({
+				title: '请先登录！'
+			})
+			setTimeout(function () {
+				wx.switchTab({
+					url: '../wode/wode',
 				})
-			}
-		})
+			}, 2000)
+		}
 
 		that.setData({
 			this_cover: e.currentTarget.dataset.cover,
 			this_goods_name: e.currentTarget.dataset.goods_name
 		})
 		// console.log(e.currentTarget.dataset)
-		if(that.data.disp=='none'){
-         that.setData({
-					 disp:'flex',
-				 })
-		}else{
-			that.setData({
-				disp: 'none',
-			})
-		}
+		
 	},
 	// 关闭分享
 	GBshare: function () {
@@ -201,37 +224,36 @@ Page({
 	//分享海报
 	shearHB:function(e){
      var that=this;
-		 
-			wx.request({
-				url: getApp().heads + 'Center/sharePoster',
-				data: {
-					goods_id: that.data.goodid,
-					m_id: wx.getStorageSync('m_id'),
-				},
-				header: {
-					'content-type': 'application/x-www-form-urlencoded'
-				},
-				method: 'post',
-				success: function (e) {
-					console.log(e.data.data);
-					wx.previewImage({
-						current: e.data.data,//当前的这张图
-						urls: [e.data.data], //图片数组
-					})
+			 wx.request({
+				 url: getApp().heads + 'Center/sharePoster',
+				 data: {
+					 goods_id: that.data.goodid,
+					 m_id: wx.getStorageSync('m_id'),
+				 },
+				 header: {
+					 'content-type': 'application/x-www-form-urlencoded'
+				 },
+				 method: 'post',
+				 success: function (e) {
+					 console.log(e);
+					 wx.previewImage({
+						 current: e.data.data.url,//当前的这张图
+						 urls: [e.data.data.url], //图片数组
+					 })
 
-					if (that.data.disp == 'none') {
-						that.setData({
-							disp: 'flex',
-							fx: 1
-						})
-					} else {
-						that.setData({
-							disp: 'none',
-							fx: 0
-						})
-					}
-				}
-			})
+					 if (that.data.disp == 'none') {
+						 that.setData({
+							 disp: 'flex',
+							 fx: 1
+						 })
+					 } else {
+						 that.setData({
+							 disp: 'none',
+							 fx: 0
+						 })
+					 }
+				 }
+			 })
 		 
 	},
 	onShow:function(){
@@ -248,7 +270,16 @@ Page({
 		})
 		that.getSend();
 		that.getshikanTime();//获取试看时长
+
+		var query = wx.createSelectorQuery();
+		query.select('.m_banner').boundingClientRect()
+		query.exec(function(res){
+			console.log(res)
+		});
+		
 	},
+	
+
 	getshikanTime:function(){
 		var that=this;
 		wx.request({
@@ -281,7 +312,7 @@ Page({
 		wx.request({
 			url: getApp().heads +'Video/isBest',
 			data: {
-        p:that.data.p,
+				p: that.data.p,
 				m_id: wx.getStorageSync('m_id')
 			},
 			header: {
@@ -296,6 +327,17 @@ Page({
 				})
 			}
 		})
+	},
+	onPullDownRefresh:function(){
+		wx.showNavigationBarLoading();
+		// 隐藏导航栏加载框
+		this.getSend();
+		setTimeout(function(){
+			// 隐藏导航栏加载框
+			wx.hideNavigationBarLoading();
+			// 停止下拉动作
+			wx.stopPullDownRefresh();
+		},1000)
 	},
 	// 触底分页
 	onReachBottom: function () {
@@ -317,7 +359,7 @@ Page({
 			},
 			method: 'post',
 			success: function (e) {
-				console.log(e.data.data)
+				console.log(e)
 				
 				var Oldsong = that.data.goodList;//初始数组
 				var Newsong = e.data.data.video;//新数组
@@ -340,7 +382,7 @@ Page({
 			}
 		})
 	},
-	/**
+	     /**
        * 规则跳转
        */
 	tiaozhuanguize: function (e) {

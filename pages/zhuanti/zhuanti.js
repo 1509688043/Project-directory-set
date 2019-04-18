@@ -13,7 +13,7 @@ Page({
 	goZTlistxiangqing:function(e){
 		// console.log(e)
     wx.navigateTo({
-			url: '../zhuanti_list/zhuanti_list?goods_cate_id=' + e.currentTarget.dataset.goods_cate_id,
+			url: '../zhuanti_list/zhuanti_list?goods_cate_id=' + e.currentTarget.dataset.goods_cate_id + '&title=' + e.currentTarget.dataset.name,
 		})
 	},
 	// 触底分页
@@ -62,6 +62,7 @@ Page({
 			},
 			method: 'post',
 			success: function (e) {
+				console.log(e)
 				console.log(e.data.data.list);
 				that.setData({
 					list: e.data.data.list,
@@ -110,7 +111,16 @@ Page({
 	 * 页面相关事件处理函数--监听用户下拉动作
 	 */
 	onPullDownRefresh: function () {
-
+		var that=this;
+		wx.showNavigationBarLoading();
+		// 隐藏导航栏加载框
+		that.goSend();
+		setTimeout(function () {
+			// 隐藏导航栏加载框
+			wx.hideNavigationBarLoading();
+			// 停止下拉动作
+			wx.stopPullDownRefresh();
+		}, 1000)
 	},
 
 	/**
