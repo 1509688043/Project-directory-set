@@ -67,6 +67,35 @@ Page({
 			}
 		})
 	},
+  // 取消收藏
+  dele_sc:function(e){
+    var that=this;
+    var goods_id=e.currentTarget.dataset.goods_id;
+    wx.request({
+      url: getApp().heads + 'Center/doCollection',
+      data: {
+        m_id: wx.getStorageSync('m_id'),
+        goods_id: goods_id,
+        value: 0  	//0-取消，1-添加
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      method: 'post',
+      success: function (e) {
+        console.log(e);
+        wx.showToast({
+          title: e.data.message,
+          icon:'success',
+          duration:2000,
+          success:function(){
+            that.onLoad();
+          }
+        })
+        
+      }
+    })
+  },
 	onLoad: function (options) {
      this.goSend();
 	},

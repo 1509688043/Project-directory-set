@@ -1,60 +1,53 @@
 {
-  "pages":[
+	"pages": [
+    
 		"pages/index/index",
-		
-		
 		"pages/wangye/wangye",
 		"pages/wode/wode",
 		"pages/search_list/search_list",
 		"pages/fenye/fenye",
-		
-		
-		
 		"pages/search/search",
-		
 		"pages/wodeGK/wodeGK",
 		"pages/wodeSC/wodeSC",
-		
 		"pages/vip_xufei/vip_xufei",
 		"pages/vip_kaitong/vip_kaitong",
 		"pages/zhuanti_list/zhuanti_list",
 		"pages/zhuanti/zhuanti",
 		"pages/video_xiangqing/video_xiangqing",
-		
-    
-    "pages/logs/logs"
-  ],
-  "window":{
-    "backgroundTextStyle":"dark",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle":"black",
-		"enablePullDownRefresh":true
-  },
+		"pages/logs/logs"
+	],
+	"window": {
+		"backgroundTextStyle": "dark",
+		"navigationBarBackgroundColor": "#fff",
+		"navigationBarTitleText": "WeChat",
+		"navigationBarTextStyle": "black",
+		"enablePullDownRefresh": true
+	},
 	"tabBar": {
-		"color": "#333333",
-		"borderStyle":"white",
-		"selectedColor": "#333333",
+		"color": "#999",
+		"borderStyle": "white",
+		"selectedColor": "#222222",
 		"backgroundColor": "#FFFFFF",
 		"list": [
 			{
 				"pagePath": "pages/index/index",
-				"text": "推荐",
-				"iconPath": "pages/image/1s.png",
-				"selectedIconPath": "pages/image/1n.png"
+				"text": "འོས་སྦྱོར།",
+				"iconPath": "pages/image/w1.png",
+				"selectedIconPath": "pages/image/x2.png"
 			},
 			{
 				"pagePath": "pages/zhuanti/zhuanti",
-				"text": "专题",
-				"iconPath": "pages/image/2s.png",
-				"selectedIconPath": "pages/image/2n.png"
+				"text": " ཆེད་སྒྲིག",
+				"iconPath": "pages/image/w3.png",
+				"selectedIconPath": "pages/image/x3.png"
 			},
 			{
 				"pagePath": "pages/wode/wode",
-				"text": "我的",
-				"iconPath": "pages/image/3s.png",
-				"selectedIconPath": "pages/image/3n.png"
+				"text": "བདག",
+				"iconPath": "pages/image/w2.png",
+				"selectedIconPath": "pages/image/x1.png"
 			}
 		]
-	}
+	},
+	"sitemapLocation": "sitemap.json"
 }

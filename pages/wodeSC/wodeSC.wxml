@@ -1,6 +1,6 @@
 <view class="content">
-    <view class='item' wx:for="{{list}}" wx:for-item="item" wx:key="xxx" data-goods_id='{{item.goods_id}}' bindtap='goVxiangqing'>
-		    <view class='item_left'>
+    <view class='item' wx:for="{{list}}" wx:for-item="item" wx:key="xxx" data-goods_id='{{item.goods_id}}'>
+		    <view class='item_left' bindtap='goVxiangqing' data-goods_id='{{item.goods_id}}'>
 				    <image src='../image/jjianbian.png' class='zt'></image>
 				    <image src='{{item.cover}}'></image>
 						<view class='fobar'>
@@ -8,13 +8,16 @@
 						</view>
 				</view>
 				<view class='item_right'>
-				   <view class='p_name'>{{item.goods_name}}</view>
-					 <view class='time'>{{item.spe_name}} / {{item.create_time}}</view>
+				   <view class='p_name' bindtap='goVxiangqing' data-goods_id='{{item.goods_id}}'>{{item.goods_name}}</view>
+					 <view class='time' bindtap='goVxiangqing' data-goods_id='{{item.goods_id}}'>{{item.spe_name}} / {{item.create_time}}</view>
+    
+          <!-- <view class='qxsc'><view data-goods_id='{{item.goods_id}}' bindtap='dele_sc'>取消收藏</view></view> -->
+          <view class='qxsc'><image src='../image/laji2.png' bindtap='dele_sc' data-goods_id='{{item.goods_id}}'></image></view>
 				</view>
 		</view>
 </view>
 <!-- 没数据显示 -->
 <view class='wuship' wx:if="{{list.length==0}}">
    <image src='../image/zanwu.png'></image>
-	 <view>暂无收藏视频</view>
+	 <view>སྐབས་སུ་ཉར་ཚགས་མེད།</view>
 </view>

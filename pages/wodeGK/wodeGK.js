@@ -67,6 +67,59 @@ Page({
 			}
 		})
 	},
+  // 单个清除
+  de_clear:function(e){
+    var that=this;
+    var goods_id=e.currentTarget.dataset.goods_id;
+    wx.request({
+      url: getApp().heads + 'Center/delWatch',
+      data: {
+        m_id: wx.getStorageSync('m_id'),
+        goods_id: goods_id  //视频ID字符串,全部--0
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      method: 'post',
+      success: function (e) {
+        console.log(e);
+        wx.showToast({
+          title: e.data.message,
+          icon: 'success',
+          duration: 2000,
+          success: function () {
+            that.onLoad();
+          }
+        })
+      }
+    })
+  },
+  // 全部清除
+  de_clearAll: function () {
+    var that = this;
+    wx.request({
+      url: getApp().heads + 'Center/delWatch',
+      data: {
+        m_id: wx.getStorageSync('m_id'),
+        goods_id: 0  //视频ID字符串,全部--0
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      method: 'post',
+      success: function (e) {
+        console.log(e);
+        wx.showToast({
+          title: e.data.message,
+          icon: 'success',
+          duration: 2000,
+          success: function () {
+            that.onLoad();
+          }
+        });
+      }
+    })
+  },
 	onLoad: function (options) {
 		this.goSend();
 	},

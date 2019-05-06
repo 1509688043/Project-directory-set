@@ -6,7 +6,9 @@ Page({
 		tip:'',//判断点过来的是  开通vip 还是  我的vip
 		nd:1,
 		nickname: '',
-		head: ''
+		head: '',
+    sdn:'-1',//判断是否是视频跳过来的
+    dangevip:[]
 	},
 
 	/**
@@ -20,7 +22,9 @@ Page({
 	},
 	// 打开支付
 	openVip:function(e){
+    
 		var that=this;
+    console.log(that.data.nd)
 		wx.request({
 			url: getApp().heads + 'Center/doPay',
 			data: {
@@ -36,11 +40,6 @@ Page({
 				console.log(e);
 				var apirest=e.data.data.sign;
 				console.log(apirest)
-				// setTimeout(function () {
-				// 	wx.reLaunch({
-				// 		url: '../wode/wode?fh=1'
-				// 	})
-				// }, 1000)
 				// 调支付
 				wx.requestPayment({
 					timeStamp: apirest.timeStamp.toString(),
@@ -50,12 +49,18 @@ Page({
 					paySign: apirest.sign,
 					success:function(res){
 						console.log(res)
-						setTimeout(function () {
-							wx.reLaunch({
-								url: '../wode/wode?fh=1'
-							})
-						}, 1000)
-
+						
+            if (that.data.nd==4){//证明这次支付的是单个视频 要返回播放详情
+            wx.navigateTo({
+              url: '../video_xiangqing/video_xiangqing?goods_id=' + wx.getStorageSync('Now_goods_id'),
+            })
+            }else{//正常购买会员 返回我的会员页
+              setTimeout(function () {
+                wx.reLaunch({
+                  url: '../wode/wode?fh=1'
+                })
+              }, 1000)
+            }
 					}
 				})
 			}
@@ -63,12 +68,51 @@ Page({
     
 	},
 	onLoad: function (options) {
-		console.log(options.tip)
+    var that=this;
+    if (wx.getStorageSync('sdn')==1){//视频跳过来的
+       this.setData({
+         sdn:1,
+         nd:4
+       })
+       console.log("视频跳过来的")
+      wx.request({
+        url: getApp().heads + 'Center/videoPrice',
+        data: {
+          m_id: wx.getStorageSync('m_id'),
+          goods_id: wx.getStorageSync('Now_goods_id'),
+        },
+        header: {
+          'content-type': 'application/x-www-form-urlencoded'
+        },
+        method: 'post',
+        success: function (e) {
+          console.log(e.data.data);
+          if (e.data.data.price!==0.00){
+            that.setData({
+              dangevip: e.data.data //单个vip购买数据
+            })
+          }else{
+            wx.setStorage({//视频出现中途变更状态的时候跳回原视频
+              key: "sdn",
+              data: 0,
+            })
+            wx.redirectTo({//返回刚才看的视频页
+              url: '../video_xiangqing/video_xiangqing?goods_id=' + e.data.data.goods_id,
+            })
+          }
+        }
+      })
+    }else{
+      this.setData({
+        sdn: 0
+      })
+    }
 		this.setData({
 			tip:options.tip,
 			head: wx.getStorageSync('head'),
 			nickname: wx.getStorageSync('nickname')
 		})
+   
      this.goSend();
 	},
 	goSend:function(){

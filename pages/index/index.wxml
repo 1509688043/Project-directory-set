@@ -2,31 +2,66 @@
 <view class="{{fx==1?'fx':''}}">
 <view class='m_banner'>
 <view class="top_search" bindtap='gosearch'>
-   <image src='../image/search.png'></image>
-	 <input type='text' placeholder='搜索' placeholder-class="place-holder" disabled></input>
+   <image src='../image/search_1.png'></image>
+	 <input type='text' placeholder='འཚོལ་བཤེར།' placeholder-class="place-holder" disabled></input>
 </view>
 
 
-  <swiper autoplay indicator-dots indicator-color="#999999" indicator-active-color="#ffffff">
+  <swiper autoplay indicator-dots indicator-color="rgba(255,255,255,0.4)" indicator-active-color="rgba(255,255,255,1)">
 	   <swiper-item wx:for="{{init.adverts}}" wx:for-item="item" wx:key="xxx" data-param="{{item.param}}" data-target_rule="{{item.target_rule}}" data-ad_id="{{item.ad_id}}" bindtap="tiaozhuanguize"><image src='{{item.abs_url}}'></image></swiper-item>
 	</swiper>
 </view>
 
 
-<view class='now_tj'><text>今日推荐</text></view>
+<view class='now_tj'><text style='font-family: "myfont";'>ཚ་ཤོས།</text></view>
 
 <view class="V_menu" wx:for="{{goodList}}" wx:for-item="item" wx:key="xxx" data-agrees='{{item.agrees}}' data-goods_id='{{item.goods_id}}' data-is_vip='{{item.is_vip}}' data-collections_status='{{item.collections_status}}' data-agrees_status='{{item.agrees_status}}'>
-  <!-- <video src="{{src}}" bindtimeupdate="cateVideo" id="myVideo{{index}}" bindpause="stopvideo" data-index='{{index}}' show-play-btn='{{false}}' show-center-play-btn="{{false}}"></video> -->
-	<image class='coverVIdeo' src='{{item.cover}}' bindtap='goVxiaongqing' data-goods_id='{{item.goods_id}}' data-is_vip='{{item.is_vip}}'></image>
-	<!-- <view class='fi_div' wx:if="{{xx[index]!=''}}">
-	   <view>开通会员免费观看</view>
-		 <button>立即开通</button>
-	</view> -->
-	<!-- bindtap='bofang' -->
-	<view hidden="{{hot==index}}" class='bofang' bindtap='goVxiaongqing' data-goods_id='{{item.goods_id}}' data-is_vip='{{item.is_vip}}' data-index='{{index}}'><image src='../image/bofang11.png'></image><view wx:if="{{item.is_vip==1}}">试看{{shikanTime/60}}分钟</view></view>
+<!-- item.file_url v_src-->
+     <!-- src="{{hot==index?v_src:''}}"  src='{{item.file_url}}'-->
+ <view class='video_menu'>
+     <video 
+     
+     src="{{hot==index?v_src:''}}"
+     bindtimeupdate="cateVideo" 
+     id="myVideo{{index}}"  
+     bindpause="stopvideo" 
+     data-index='{{index}}' 
+     show-play-btn='{{true}}' 
+     show-center-play-btn="{{true}}" 
+     controls='{{true}}' 
+     enable-play-gesture="{{true}}" 
+     bindfullscreenchange="jinquanping" 
+     custom-cache="{{false}}" 
+     data-goods_id='{{item.goods_id}}' 
+     data-is_vip='{{item.is_vip}}' 
+     show-fullscreen-btn="{{true}}" 
+     data-index='{{index}}' 
+     bindplay='bofang'  
+     data-v_src='{{item.file_url}}'
+     data-views_status='{{item.views_status}}'
+     bindprogress='progressdd'>
+  <!-- <cover-view class='ncover' wx:if="{{coverQP==1}}">
+     <view class='tts'>开通会员免费观看</view>
+     <view class='kk_btn' bindtap='kaitongvip'>立即开通</view>
+  </cover-view> -->
+  </video>
+     <image class='coverVIdeo' hidden="{{hot==index}}" src='{{item.cover}}' bindtap="bofang" data-views_status='{{item.views_status}}' data-index='{{index}}'  data-is_vip='{{item.is_vip}}' data-v_src='{{item.file_url}}'></image>
+	<view class='fi_div' wx:if="{{xx[index]!=''}}">
+	   <view>ཚོགས་ཞུགས་གནང་ཚེ་བརྙན་ཆ་ཚང་ལ་བལྟ་ཐུབ།</view>
+		 <button bindtap='kaitongvip' data-goods_id='{{item.goods_id}}'> ཚོགས་ཞུགས།</button>
+	</view>
+
+	<view hidden="{{hot==index}}" class='bofang' bindtap='bofang' data-views_status='{{item.views_status}}' data-is_vip='{{item.is_vip}}' data-index='{{index}}' data-v_src='{{item.file_url}}'>
+  <image src='../image/bofang11.png'></image>
+  <view wx:if="{{item.is_vip==1}}">ཚོད་ལྟའི་གཟིགས་ཡུན་སྐར།{{shikanTime/60}}</view>
+  </view>  
+
+ </view>
+
+
 
 	 <view class='namegroup'>
-	    <view class='Vname'>{{item.goods_name}}</view>
+	    <view class='Vname' bindtap='goVxiaongqing' data-goods_id='{{item.goods_id}}' data-is_vip='{{item.is_vip}}'>{{item.goods_name}}</view>
 			<view class='name_right'>
 			    <view bindtap='shouchang' data-collections_status='{{item.collections_status}}' data-goods_id='{{item.goods_id}}'>
 					   <image src='{{shouchangimg[item.collections_status]}}'></image>
@@ -46,7 +81,7 @@
 	 <view class='V-group'>
 	    <text>{{item.spe_name}}</text>
 			<text>{{item.update_time}}</text>
-			<text>{{item.views}}次播放</text>
+			<text>{{item.views}}བལྟས་ཟིན།</text>
 	 </view>
 
 	 <view class='msg' style="{{index==zk?'':'-webkit-line-clamp:2'}}" data-index='{{index}}' data-goods_desc_sum='{{item.goods_desc_sum}}'>
@@ -57,11 +92,11 @@
 		<view class='zhankai'  wx:if="{{item.goods_desc_sum>50}}">
 		   <view  wx:if="{{index==zk}}" bindtap='zk' data-index='-1'>
 			   <image src='../image/shou.png'></image>
-			   <text>收起</text>
+			   <text>སྐུམས།</text>
 			 </view>
 			 <view wx:if="{{index!==zk}}"  bindtap='zk' data-index='{{index}}'>
 			   <image src='../image/zhankai.png'></image>
-			   <text>展开</text>
+			   <text>རྐྱོངས།</text>
 			 </view>
 		</view>
 </view>
@@ -75,12 +110,12 @@
 				    <view>
 						   <button plain="true" open-type="share">
 							    <image src='../image/weixin.png'></image>
-							    <text>分享好友</text>
+							    <text>གྲོགས་ལ་འོས་སྦྱོར།</text>
 							 </button>
 						</view>
 						<view bindtap='shearHB'>
 						   <image src='../image/haibao.png'></image>
-							 <text>分享海报</text>
+							 <text>པར་རིས་འོས་སྦྱོར།</text>
 						</view>
 				 </view>
 			</view>
@@ -94,6 +129,13 @@
 
 </view>
 </view>
+
+
+<!-- <cover-view class='ncover' wx:if="{{coverQP==1}}">
+     <view class='tts'>开通会员免费观看</view>
+     <view class='kk_btn' bindtap='kaitongvip'>立即开通</view>
+     <cover-image src='../image/jji.png' bindtap='kaitongvip'></cover-image>
+  </cover-view> -->
 
 
 

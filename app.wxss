@@ -1,0 +1,7 @@
+/* @import "pages/font/font.wxss"; */
+
+page{
+  font-family: 'myfont';
+  font-weight: normal;
+  font-style: normal;
+}

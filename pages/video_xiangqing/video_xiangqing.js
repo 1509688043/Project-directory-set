@@ -9,6 +9,7 @@ Page({
 		hot:false,
 		disp: 'none',
 		openshow:true,
+    isQP: false,//是否全屏
 		vSrcnote:false, //判断视频是否存在
 		isvip:0,//判断用户是否是会员 默认不是
 		fx: '0', //判断屏幕固定
@@ -28,6 +29,12 @@ Page({
 		Videolist:[],//视频信息
 		xiangguanvideoList:[],//相关视频
 	},
+  jinquanping: function (e) {
+    // console.log(e.detail.fullScreen)是否全屏
+    this.setData({
+      isQP: e.detail.fullScreen
+    })
+  },
 	//分享海报
 	shearHB: function (e) {
 		var that = this;
@@ -87,12 +94,12 @@ Page({
 				success: function (res) {
 					if (collections_status == 1) {
 						wx.showToast({
-							title: '已收藏',
+              title: 'ཉར་ཟིན།',
 							duration: 2000
 						})
 					} else {
 						wx.showToast({
-							title: '已取消',
+              title: 'དོར་ཟིན།',
 							duration: 2000
 						})
 					}
@@ -138,12 +145,12 @@ Page({
 				success: function (res) {
 					if (agrees_status == 1) {
 						wx.showToast({
-							title: '已点赞',
+              title: ' བསྟོད།',
 							duration: 2000
 						})
 					} else {
 						wx.showToast({
-							title: '已取消',
+              title: 'དོར་ཟིན།',
 							duration: 2000
 						})
 					}
@@ -153,7 +160,7 @@ Page({
 		}else{
 			//跳登录
 			wx.showToast({
-				title: '请先登录！'
+        title: 'ཐོ་འགོད་རོགས། ！'
 			})
 			setTimeout(function () {
 				wx.switchTab({
@@ -248,15 +255,15 @@ Page({
 			},
 			method: 'post',
 			success: function (e) {
-				console.log(e.data.data.file_url);
+				console.log(e);
 				var osrc = e.data.data.file_url;
-				var ossfile = osrc.replace(/amp;/g, '')
+				// var ossfile = osrc.replace(/amp;/g, '')
 				// var ossfile = osrc.split('&')[0] + osrc.split(';')[1]
 				// console.log(ossfile)
 				console.log(e.data.data)
 				that.setData({
 					Videolist: e.data.data,
-					Vsrc:ossfile, //转化后的当前视频连接
+          Vsrc:osrc,  //ossfile, //转化后的当前视频连接
 					isvip: e.data.data.views_status, //播放状态 0-限制播放 1-无限播放
 					// this_cover: e.data.data.poster,  //当前食品图片
 					// this_goods_name: e.data.data.goods_name, //当前视频名字
@@ -291,6 +298,10 @@ Page({
 	// 试看结束后点击购买开通vip
 	kaitongvip:function(){
 		var that=this;
+    wx.setStorage({//设置标识辨别是从视频点击开通过去的
+      key: "sdn",
+      data: 1,
+    })
 		console.log(wx.getStorageSync('m_id'))
 		// if (wx.getStorageSync('m_id')!=='') {//用户登录了
 		// 	wx.navigateTo({
@@ -301,9 +312,16 @@ Page({
 		// 		url: '../wode/wode',
 		// 	})
 		// }
-		wx.switchTab({
-			url: '../wode/wode',
-		})
+		// 登录了
+    if (wx.getStorageSync('nickname') !== ''){
+      wx.navigateTo({
+        url: '../vip_xufei/vip_xufei',
+      })
+    }else{//未登录
+      wx.switchTab({
+        url: '../wode/wode',
+      })
+    }
 	},
 	onReady: function (res) {
 		this.videoContext = wx.createVideoContext('myVideo')
@@ -319,19 +337,28 @@ Page({
 			var isvip=that.data.isvip; //视频是否会员身份
 			var userisvip = wx.getStorageSync('is_vip');//用户是否是vip 0 1
 			console.log(isvip, userisvip)
-			if (isvip == 0) {//视频是会员则计时 播放状态 0-限制播放 1-无限播放
-				if (wx.getStorageSync('is_vip')==0){//用户不是会员
-					if (snum > that.data.Videolist.times.s) {// wx.getStorageSync('shikanTime')
+      if (isvip == 0 && wx.getStorageSync('is_vip') == 0) {//视频是会员则计时 播放状态 0-限制播放 1-无限播放
+				// if (wx.getStorageSync('is_vip')==0){//用户不是会员
+        // that.data.Videolist.times.s
+        if (snum > wx.getStorageSync('shikanTime')) {// wx.getStorageSync('shikanTime')
 						videoContextPrev.pause()
 						console.log("超时")
 						clearTimeout(timer);
 						that.setData({
 							openshow: false
 						})
+            if (that.data.isQP) {
+              // var videoContextPrev = wx.createVideoContext('myVideo' + that.data.hot)
+              videoContextPrev.exitFullScreen()
+              // that.setData({
+              //   // coverQP:1//显示出遮罩层
+              //   V_direction:0
+              // })
+            }
 					}
-				} else {
-					console.log('用户是会员')
-				}
+				// } else {
+				// 	console.log('用户是会员')
+				// }
 			}else{
 				//
 				console.log('无限播放')

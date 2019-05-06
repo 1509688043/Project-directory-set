@@ -4,7 +4,7 @@
 
 .V_menu{width: 100%;position: relative;margin-bottom: 30rpx;}
 .V_menu .vip{width: 68rpx;height: 30rpx;margin-right: 20rpx;}
-.V_menu video{width: 100%;height: 402rpx;}
+.V_menu video{width: 100%;height: 402rpx;position: relative;z-index: 1;}
 .V_menu .fi_div{width: 100%;height: 402rpx;background: #000;overflow: hidden;position: absolute;top: 0;left: 0;z-index: 999;}
 .V_menu .fi_div view{text-align: center;font-size: 32rpx;color: #fff;margin: 150rpx auto 40rpx auto;} 
 .V_menu .fi_div button{width: 250rpx;height:75rpx;text-align: center;line-height: 75rpx;color: #fff;background: #07C062;border-radius: 20rpx;outline: none;border: none;display: block;margin: 0 auto;font-size: 28rpx;}
@@ -39,7 +39,7 @@
 .wuship image{width: 182rpx;height: 151rpx;margin: 0 auto;margin-bottom: 35rpx;display: block;}
 .wuship view{color: #666666;font-size: 30rpx;text-align: center;}
 
-.filiter{width: 100%;height: 100%;align-items: center;justify-content: center;background: rgba(0,0,0,0.4);position: fixed;top: 0;z-index: 999;}
+.filiter{width: 100%;height: 100%;align-items: center;justify-content: center;background: rgba(0,0,0,0.4);position: fixed;top: 0;z-index: 9999;}
 .filiter .box{width: 590rpx;height: 695rpx;background: #fff;border-radius: 25rpx;position: relative;}
 .filiter .box .mimg{width: 100%;height: 336rpx;border-radius: 25rpx 25rpx 0 0;}
 .share{width: 100%;}

@@ -2,25 +2,26 @@
     <image src='{{head}}' class='image' bindtap='setuserimg' data-id='{{userImg.id}}'></image>
 		<!-- <image src='../image/userm.png' class='image' bindtap='setuserimg' wx:if="{{head.length==0}}"></image> -->
 		<!-- <view class='denglu' bindtap='goLogin'>登录</view> -->
-		<button open-type="getUserInfo"  class='denglu' bindtap='goLogin' wx:if="{{is_loginshow}}">登录</button>
+		<button open-type="getUserInfo"  class='denglu' bindtap='goLogin' wx:if="{{is_loginshow}}"> ཐོ་འགོད།</button>
 		<view class='myuser' wx:if="{{!is_loginshow}}">
 		    <view class='user'><view>{{username}}</view><image src='../image/huangguan.png' wx:if="{{isviparr.is_vip=='1'}}"></image></view>
-				<view class='tips' wx:if="{{isviparr.is_vip=='1'}}">您的会员将在{{isviparr.over_time}}到期</view>
+				<view class='tips' wx:if="{{isviparr.is_vip=='1'}}">ཁྱེད་ཀྱི་ཚོགས་མིའི་དུས་ཡུན་{{isviparr.over_time}}བར་ཡིན། </view>
 		</view>
 </view>
 
 <view class='content'>
-  <view bindtap='goVIp' data-tip='1' wx:if="{{isviparr.is_vip=='0'}}">开通VIP会员</view>
-	<view bindtap='goVIp' data-tip='0' wx:if="{{isviparr.is_vip=='1'}}">我的会员</view>
-	<view bindtap='goSC'>我的收藏</view>
-	<view bindtap='goGK'>观看记录</view>
-	<view ><button open-type="contact">意见反馈</button></view>
-	<view bindtap='openlainxi'>联系我们</view>
+  <view bindtap='goVIp' data-tip='1' wx:if="{{isviparr.is_vip=='0'}}">  ཚོགས་ཞུགས།</view>
+	<view bindtap='goVIp' data-tip='0' wx:if="{{isviparr.is_vip=='1'}}"> ཚོགས་ཞུགས།</view>
+  <!-- wode -->
+	<view bindtap='goSC'>ཉར་ཚགས།</view>
+	<view bindtap='goGK'> བལྟས་ཟིན་པ།</view>
+	<view ><button open-type="contact">བསམ་འཆར།</button></view>
+	<view bindtap='openlainxi'>ང་ཚོར་འབྲེལ་རོགས།</view>
 </view>
 
 <view class='filiter' style='display:{{disp}}'>
    <view class='box'>
-	    <view class='msg'>联系我们：<text>{{kfnumber}}</text></view>
-			<view class='quxaio' bindtap='delelainxi'>取消</view>
+	    <view class='msg'>ང་ཚོར་འབྲེལ་རོགས།：<text>{{kfnumber}}</text></view>
+			<view class='quxaio' bindtap='delelainxi'>མི་བསུབ།</view>
 	 </view>
 </view>

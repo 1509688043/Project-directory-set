@@ -13,3 +13,10 @@ page{background: #F4F4F4;}
 .wuship{width: 100%;overflow: hidden;margin-top: 400rpx;}
 .wuship image{width: 182rpx;height: 151rpx;margin: 0 auto;margin-bottom: 35rpx;display: block;}
 .wuship view{color: #666666;font-size: 30rpx;text-align: center;}
+.de_menu{width: 100%;margin-top: 100rpx;display: flex;align-items: center;justify-content: flex-end;}
+.de_menu image{width: 30rpx;height: 30rpx;margin-right: 20rpx;}
+
+
+
+
+.dele{width: 100%;height: 80rpx;background: red;color: #fff;font-size: 30rpx;text-align: center;line-height: 80rpx;position: fixed;bottom: 0;}

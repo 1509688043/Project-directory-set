@@ -2,11 +2,11 @@
 <view class="{{fx==1?'fx':''}}">
 
 <view class="V_menu" data-is_vip='{{Videolist.is_vip}}'>
-  <video src="{{Vsrc}}" bindtimeupdate="cateVideo" id="myVideo" bindpause="stopvideo" show-play-btn='{{true}}' show-center-play-btn="{{false}}" controls='{{true}}' enable-play-gesture="{{true}}"></video>
+  <video src="{{Vsrc}}" bindtimeupdate="cateVideo" id="myVideo" bindpause="stopvideo" show-play-btn='{{true}}' show-center-play-btn="{{false}}" controls='{{true}}' enable-play-gesture="{{true}}" bindfullscreenchange="jinquanping" custom-cache="{{false}}" bindplay="bofang" show-fullscreen-btn="{{true}}"></video>
 	<view class='vSrcnote' wx:if="{{vSrcnote}}">该视频资源不存在。</view>
 	<view class='fi_div' hidden="{{openshow}}"> 
-	   <view>开通会员免费观看</view>
-		 <button bindtap='kaitongvip'>立即开通</button>
+	   <view>ཚོགས་ཞུགས་གནང་ཚེ་བརྙན་ཆ་ཚང་ལ་བལྟ་ཐུབ།</view>
+		 <button bindtap='kaitongvip'> ཚོགས་ཞུགས།</button>
 	</view>
 	<view hidden="{{hot}}" class='bofang' bindtap='bofang'>
 	   <!-- <view wx:if="{{isvips!==1}}" class='sk'>
@@ -20,7 +20,7 @@
 	</view>
 
 	 <view class='namegroup'>
-	    <view class='Vname'><image class='vip' src='../image/vip.png' wx:if="{{Videolist.is_vip==1}}"></image><text>{{Videolist.goods_name}}</text></view>
+	    <view class='Vname'><image class='vip' src='../image/vip1.png' wx:if="{{Videolist.is_vip==1}}"></image><text>{{Videolist.goods_name}}</text></view>
 			<view class='name_right'>
 			    <view bindtap='shouchang' data-collections_status='{{Videolist.collections_status}}' data-goods_id='{{Videolist.goods_id}}'>
 					   <image src='{{shouchangimg[Videolist.collections_status]}}'></image>
@@ -40,7 +40,7 @@
 	 <view class='V-group'>
 	    <text>{{Videolist.spe_name}}</text>
 			<text>{{Videolist.update_time}}</text>
-			<text>{{Videolist.views}}次播放</text>
+			<text>{{Videolist.views}}བལྟས་ཟིན།</text>
 	 </view>
 
 	 <view class='msg' >
@@ -48,23 +48,23 @@
      </view>
 </view>
 
-<view class='now_tj' wx:if="{{xiangguanvideoList.length!==0}}"><text>相关推荐</text></view>
+<view class='now_tj' wx:if="{{xiangguanvideoList.length!==0}}"><text>འབྲེལ་ཡོད།</text></view>
 <view class='content'>
    <view class='c_item' wx:for="{{xiangguanvideoList}}" wx:for-item="item" wx:key="xxx"  data-goods_id='{{item.goods_id}}' bindtap='goVxiangqing'>
 	    <view class='imgdiv'>
 			   <image src='../image/jjianbian.png' class='zt'></image>
 			   <image src='{{item.cover}}'></image>
-				 <view class='b_num'>播放量{{item.views}}</view>
+				 <view class='b_num'>གཟིགས་གྲངས།{{item.views}}</view>
 			</view>
 			<view class='name'>{{item.goods_name}}</view>
-			<view class='uptime'>更新时间：{{item.update_time}}</view>
+			<view class='uptime'> གསར་སྤེལ།：{{item.update_time}}</view>
 	 </view>
 </view>
 
 <!-- 没数据显示 -->
 <view class='wuship' wx:if="{{Videolist.length==0}}">
    <image src='../image/zanwu.png'></image>
-	 <view>暂无视频信息</view>
+	 <view>རྙེད་མ་སོང་།</view>
 </view>
 
 
@@ -77,12 +77,12 @@
 				    <view>
 						   <button plain="true" open-type="share">
 							    <image src='../image/weixin.png'></image>
-							    <text>分享好友</text>
+							    <text> གྲོགས་ལ་འོས་སྦྱོར།</text>
 							 </button>
 						</view>
 						<view bindtap='shearHB'>
 						   <image src='../image/haibao.png'></image>
-							 <text>分享海报</text>
+							 <text> པར་རིས་འོས་སྦྱོར།</text>
 						</view>
 				 </view>
 			</view>

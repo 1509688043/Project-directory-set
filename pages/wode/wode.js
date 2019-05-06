@@ -16,6 +16,12 @@ Page({
 	// 进vio购买页面
 	goVIp:function(e){
 		// console.log(e)
+    if (e.currentTarget.dataset.tip) {//我的会员  ==0
+      wx.setStorage({//设置标识辨别是从视频点击开通过去的
+        key: "sdn",
+        data: 0,
+      })
+    }
 		wx.navigateTo({
 			url: '../vip_xufei/vip_xufei?tip=' + e.currentTarget.dataset.tip,
 		})
@@ -82,7 +88,6 @@ Page({
 												filePath: temp,
 												name: 'userImg',
 												success: function (e) {
-													// console.log(JSON.parse(e.data).data.list[0])
 													that.setData({
 														userImg: JSON.parse(e.data).data.list[0]
 													})
@@ -187,6 +192,7 @@ Page({
 	// 上传头像
 	setuserimg(e){
 		var that=this;
+    
 		wx.chooseImage({
 			count: 1,
 			sizeType: ['original', 'compressed'],
@@ -194,16 +200,41 @@ Page({
 			success(res) {
 				// tempFilePath可以作为img标签的src属性显示图片
 				const tempFilePaths = res.tempFilePaths
-				// console.log(res)
 				wx.uploadFile({
-					url: getApp().heads + 'System/uploadPicture',
+          url: getApp().heads + 'System/uploadPicture',
 					filePath: tempFilePaths[0],
 					name: 'userImg',
+          formData:{
+            pictures: tempFilePaths[0]
+          },
 					success:function(e){
-						// console.log(JSON.parse(e.data))
-            that.setData({
-							userImg: JSON.parse(e.data).data.list
-						})
+            var oadd = JSON.parse(e.data)
+            console.log(oadd)
+            console.log(oadd.data.list[0])  //abs_url
+            wx.uploadFile({
+              url: getApp().heads + 'Center/modifyInfo',
+              filePath: tempFilePaths[0],
+              name: 'userImg',
+              formData: {
+                m_id:wx.getStorageSync("m_id"),
+                field:'head',
+                value: oadd.data.list[0].id
+              },
+              success: function (e) {
+                console.log(e)
+                var n_dd=JSON.parse(e.data)
+                console.log(n_dd.message)
+                wx.showToast({
+                  title: n_dd.message,
+                  duration:1500
+                })
+                that.setData({
+                  head: oadd.data.list[0].abs_url
+                })
+                // that.onLoad();
+              }
+            })
+
 					}
 				})
 			}
