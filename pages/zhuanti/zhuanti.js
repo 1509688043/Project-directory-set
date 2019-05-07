@@ -44,7 +44,7 @@ Page({
 						hisMore: false //无更多数据
 					})
 					wx.showToast({
-						title: '暂无更多数据！'
+            title: 'རྙེད་མ་སོང་།！'
 					})
 				}
 			}

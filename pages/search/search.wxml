@@ -1,7 +1,7 @@
 <view class="top_search">
    <view class='searchdiv'>
 	     <image src='../image/sous.png'></image>
-			 <input type='text' placeholder='搜索' bindinput='oninput' bindconfirm='searchBtn' value='{{oninput}}'></input>
+			 <input type='text' placeholder='འཚོལ་བཤེར།' bindinput='oninput' bindconfirm='searchBtn' value='{{oninput}}'></input>
 	 </view>
 	 <view class='s_right'><text bindtap='clearText'>བསུབ།</text></view>
 </view>
