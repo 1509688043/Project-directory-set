@@ -95,13 +95,13 @@ Page({
 					if (collections_status == 1) {
 						wx.showToast({
               title: 'ཉར་ཟིན།',
-              icon: 'none',
+              // icon: 'none',
 							duration: 2000
 						})
 					} else {
 						wx.showToast({
               title: 'དོར་ཟིན།',
-              icon: 'none',
+              icon: 'none',  
 							duration: 2000
 						})
 					}
@@ -149,7 +149,7 @@ Page({
 					if (agrees_status == 1) {
 						wx.showToast({
               title: ' བསྟོད།',
-              icon: 'none',
+              // icon: 'none',
 							duration: 2000
 						})
 					} else {
