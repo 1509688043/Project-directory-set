@@ -57,7 +57,7 @@
 				 <view class='b_num'>གཟིགས་གྲངས།{{item.views}}</view>
 			</view>
 			<view class='name'>{{item.goods_name}}</view>
-			<view class='uptime'> གསར་སྤེལ།：{{item.update_time}}</view>
+			<view class='uptime'> གསར་སྤེལ།{{item.update_time}}</view>
 	 </view>
 </view>
 
