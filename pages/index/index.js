@@ -131,7 +131,7 @@ Page({
 				},
 				success: function (res) {
 					if (agrees_status == 1) {
-						wx.showToast({
+						wx.showToast({ 
               title: 'བསྟོད།',
 							duration: 2000
 						})
