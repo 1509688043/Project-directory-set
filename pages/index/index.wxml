@@ -6,7 +6,7 @@
 	 <input type='text' placeholder='འཚོལ་བཤེར།' placeholder-class="place-holder" disabled></input>
 </view>
 
-
+ 
   <swiper autoplay indicator-dots indicator-color="rgba(255,255,255,0.4)" indicator-active-color="rgba(255,255,255,1)">
 	   <swiper-item wx:for="{{init.adverts}}" wx:for-item="item" wx:key="xxx" data-param="{{item.param}}" data-target_rule="{{item.target_rule}}" data-ad_id="{{item.ad_id}}" bindtap="tiaozhuanguize"><image src='{{item.abs_url}}'></image></swiper-item>
 	</swiper>

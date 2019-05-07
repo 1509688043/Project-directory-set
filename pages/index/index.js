@@ -132,7 +132,7 @@ Page({
 				success: function (res) {
 					if (agrees_status == 1) {
 						wx.showToast({ 
-              title: 'བསྟོད།',  
+              title: 'བསྟོད།',   
 							duration: 2000
 						})
 					} else {
