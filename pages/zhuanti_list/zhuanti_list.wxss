@@ -1,7 +1,7 @@
 
 .content{width: 100%;display: flex;flex-flow: wrap;}
 .content .c_item{width: 350rpx;margin-left: 17rpx;margin-bottom: 20rpx;}
-.content .c_item .imgdiv{width: 100%;position: relative;height:226rpx;border-radius: 8rpx;overflow: hidden;}
+.content .c_item .imgdiv{width: 100%;position: relative;height:215rpx;border-radius: 8rpx;overflow: hidden;}
 .content .c_item .imgdiv .zt{position: absolute;top: 0;left: 0;}
 
 .content .c_item .imgdiv image{width: 100%;height: 100%;}

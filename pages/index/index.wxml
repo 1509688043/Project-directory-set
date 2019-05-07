@@ -12,8 +12,8 @@
 	</swiper>
 </view>
 
-
-<view class='now_tj'><text style='font-family: "myfont";'>ཚ་ཤོས།</text></view>
+<!-- 今日推荐 -->
+<view class='now_tj'><text style='font-family: "myfont";'>ནང་དོན་ཚ་ཤོས།</text></view>
 
 <view class="V_menu" wx:for="{{goodList}}" wx:for-item="item" wx:key="xxx" data-agrees='{{item.agrees}}' data-goods_id='{{item.goods_id}}' data-is_vip='{{item.is_vip}}' data-collections_status='{{item.collections_status}}' data-agrees_status='{{item.agrees_status}}'>
 <!-- item.file_url v_src-->

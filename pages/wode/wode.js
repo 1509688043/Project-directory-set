@@ -34,7 +34,7 @@ Page({
 			})
 		}else{
 			wx.showToast({
-				title: '请先登录',
+        title: 'ཐོ་འགོད་རོགས།',
 			})
 		}
 		
@@ -47,7 +47,7 @@ Page({
 			})
 		} else {
 			wx.showToast({
-				title: '请先登录',
+        title: 'ཐོ་འགོད་རོགས།',
 			})
 		}
 	},

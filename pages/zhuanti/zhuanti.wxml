@@ -4,9 +4,9 @@
 	    <view class='imgdiv'>
 			   <image src='../image/zjb.png' class='zt'></image>
 			   <image src='{{item.cover}}'></image>
-				 <view class='b_num'>བརྙན།{{item.sum}}</view>
+				 <view class='b_num'>བརྙན་ {{item.sum}} ཡོད།</view>
 			</view>
 			<view class='name'>{{item.name}}</view>
-			<view class='uptime'>{{item.update_time}}གསར་སྤེལ་དུས་ཚོད།</view>
+			<view class='uptime'>གསར་སྤེལ་དུས་ཚོད།{{item.update_time}}</view>
 	 </view>
 </view>

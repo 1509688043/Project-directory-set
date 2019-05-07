@@ -47,7 +47,8 @@ Page({
 	},
 	// 确认删除历史
 	clear_his: function () {
-		wx.clearStorage();
+		// wx.clearStorage();
+    wx.setStorageSync("test1", []);
 		this.setData({
 			addlist: []
 		})

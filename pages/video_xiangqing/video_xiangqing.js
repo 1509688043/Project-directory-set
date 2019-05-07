@@ -95,11 +95,13 @@ Page({
 					if (collections_status == 1) {
 						wx.showToast({
               title: 'ཉར་ཟིན།',
+              icon: 'none',
 							duration: 2000
 						})
 					} else {
 						wx.showToast({
               title: 'དོར་ཟིན།',
+              icon: 'none',
 							duration: 2000
 						})
 					}
@@ -110,6 +112,7 @@ Page({
 		}else{
 			//跳登录
 			wx.showToast({
+        icon: 'none',
 				title: '请先登录！'
 			})
 			setTimeout(function () {
@@ -146,11 +149,13 @@ Page({
 					if (agrees_status == 1) {
 						wx.showToast({
               title: ' བསྟོད།',
+              icon: 'none',
 							duration: 2000
 						})
 					} else {
 						wx.showToast({
               title: 'དོར་ཟིན།',
+              icon: 'none',
 							duration: 2000
 						})
 					}
@@ -160,7 +165,8 @@ Page({
 		}else{
 			//跳登录
 			wx.showToast({
-        title: 'ཐོ་འགོད་རོགས། ！'
+        icon: 'none',
+        title: 'ཐོ་འགོད་རོགས།'
 			})
 			setTimeout(function () {
 				wx.switchTab({
@@ -204,7 +210,8 @@ Page({
 			})
 		}else{
 			wx.showToast({
-				title: '请先登录！'
+        icon: 'none',
+        title: 'ཐོ་འགོད་རོགས།'
 			})
 			setTimeout(function () {
 				wx.switchTab({

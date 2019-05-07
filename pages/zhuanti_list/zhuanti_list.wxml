@@ -4,15 +4,15 @@
 	    <view class='imgdiv'>
 			   <image src='../image/jjianbian.png' class='zt'></image>
 			   <image src='{{item.cover}}'></image>
-				 <view class='b_num'>播放量{{item.views}}</view>
+				 <view class='b_num'>གཟིགས་གྲངས།{{item.views}}</view>
 			</view>
 			<view class='name'>{{item.goods_name}}</view>
-			<view class='uptime'>更新时间：{{item.update_time}}</view>
+			<view class='uptime'>གསར་སྤེལ་དུས་ཚོད།{{item.update_time}}</view>
 	 </view>
 </view>
 
 <!-- 没数据显示 -->
 <view class='wuship' wx:if="{{shuju==0}}">
    <image src='../image/zanwu.png'></image>
-	 <view>暂无更多视频</view>
+	 <view>རྙེད་མ་སོང་།</view>
 </view>
